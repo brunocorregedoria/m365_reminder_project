@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 
+
 # Função para detectar conflitos de horário entre eventos
 def detect_conflicts(events):
     conflicts = []
@@ -15,12 +16,19 @@ def detect_conflicts(events):
             # Verifica se há sobreposição de horários entre os dois eventos
             # Um conflito ocorre se o início do segundo evento for antes do fim do primeiro
             # E o fim do primeiro evento for depois do início do segundo
-            if max(event1.start_datetime, event2.start_datetime) < min(event1.end_datetime, event2.end_datetime):
-                conflicts.append((event1, event2)) # Adiciona o par de eventos conflitantes à lista
+            if max(event1.start_datetime, event2.start_datetime) < min(
+                event1.end_datetime, event2.end_datetime
+            ):
+                conflicts.append(
+                    (event1, event2)
+                )  # Adiciona o par de eventos conflitantes à lista
     return conflicts
 
+
 # Função para sugerir blocos de tempo livre para foco
-def suggest_focus_blocks(events, start_hour=9, end_hour=17, min_block_duration_minutes=60):
+def suggest_focus_blocks(
+    events, start_hour=9, end_hour=17, min_block_duration_minutes=60
+):
     today = datetime.now().date()
     # Define o início e o fim do horário de trabalho para o dia atual
     work_start = datetime(today.year, today.month, today.day, start_hour, 0, 0)
@@ -30,10 +38,24 @@ def suggest_focus_blocks(events, start_hour=9, end_hour=17, min_block_duration_m
     # Converte os eventos em intervalos de tempo ocupados
     for event in events:
         # Ajusta os horários dos eventos para a data de hoje para comparação
-        event_start_today = datetime(today.year, today.month, today.day, event.start_datetime.hour, event.start_datetime.minute, event.start_datetime.second)
-        event_end_today = datetime(today.year, today.month, today.day, event.end_datetime.hour, event.end_datetime.minute, event.end_datetime.second)
+        event_start_today = datetime(
+            today.year,
+            today.month,
+            today.day,
+            event.start_datetime.hour,
+            event.start_datetime.minute,
+            event.start_datetime.second,
+        )
+        event_end_today = datetime(
+            today.year,
+            today.month,
+            today.day,
+            event.end_datetime.hour,
+            event.end_datetime.minute,
+            event.end_datetime.second,
+        )
         busy_intervals.append((event_start_today, event_end_today))
-    
+
     # Ordena os intervalos ocupados e mescla aqueles que se sobrepõem
     busy_intervals.sort()
     merged_intervals = []
@@ -63,7 +85,7 @@ def suggest_focus_blocks(events, start_hour=9, end_hour=17, min_block_duration_m
             if block_duration.total_seconds() >= min_block_duration_minutes * 60:
                 focus_blocks.append((current_time, busy_start))
         current_time = max(current_time, busy_end)
-    
+
     # Verifica o tempo livre após o último evento ocupado até o fim do dia de trabalho
     if work_end > current_time:
         block_duration = work_end - current_time
@@ -71,5 +93,3 @@ def suggest_focus_blocks(events, start_hour=9, end_hour=17, min_block_duration_m
             focus_blocks.append((current_time, work_end))
 
     return focus_blocks
-
-

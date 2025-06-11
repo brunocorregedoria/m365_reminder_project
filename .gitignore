@@ -127,3 +127,7 @@ config/secrets.json
 *.pem
 .azure/
 .venv/
+*.log
+scripts/*.log
+logs/*.log
+logs/

@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+
 class Config:
     CLIENT_ID = os.getenv("CLIENT_ID")
     CLIENT_SECRET = os.getenv("CLIENT_SECRET")
@@ -16,11 +17,9 @@ class Config:
         "Um dia livre é uma oportunidade para inovar e criar!",
         "Dia sem reuniões? Perfeito para focar em projetos importantes!",
         "Sua agenda está livre hoje. Que tal planejar os próximos passos de seus projetos?",
-        "Dia livre de compromissos! Uma ótima chance para aprender algo novo."
+        "Dia livre de compromissos! Uma ótima chance para aprender algo novo.",
     ]
 
     EMOJIS_BOM_DIA = ["🌞", "🌻", "☀️", "🌅", "🌄", "🌹", "🌈", "✨"]
     EMOJIS_REUNIAO = ["📅", "🗓️", "📊", "👥", "💼", "🤝", "📌", "🔔"]
     EMOJIS_SEM_COMPROMISSO = ["🏖️", "🎯", "📚", "💡", "🧠", "🚀", "🔍", "📝"]
-
-
