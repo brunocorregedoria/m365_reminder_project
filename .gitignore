@@ -126,3 +126,4 @@ config/secrets.json
 *.key
 *.pem
 .azure/
+.venv/
