@@ -1,0 +1,20 @@
+{{ bom_dia_emoji }} Bom dia, {{ user_name }}!
+
+{% if events %}
+**Seus compromissos para hoje:**
+
+{% for event in events %}
+{{ event.emoji }} **{{ event.subject }}**
+⏰ {{ event.time_str }}
+{% if event.location %}📍 {{ event.location }}{% endif %}
+
+{% endfor %}
+{% else %}
+{{ sem_compromisso_emoji }} **Você não tem compromissos agendados para hoje!**
+
+{{ no_events_phrase }}
+
+{% endif %}
+Tenha um dia produtivo! ✨
+
+

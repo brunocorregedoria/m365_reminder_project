@@ -1,0 +1,12 @@
+requests
+dotenv
+
+
+
+
+jinja2
+
+
+
+tenacity
+

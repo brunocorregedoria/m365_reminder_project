@@ -1,0 +1,12 @@
+# <tipo>(<escopo>): <descrição>
+#
+# Tipos válidos:
+# feat: nova funcionalidade
+# fix: correção de bug
+# docs: documentação
+# style: formatação
+# refactor: refatoração
+# test: testes
+# chore: tarefas de manutenção
+#
+# Exemplo: feat(api): adicionar endpoint de notificações

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background: linear-gradient(135deg, #0078D4, #106EBE);
+            color: white;
+            padding: 20px;
+            border-radius: 8px 8px 0 0;
+            text-align: center;
+        }
+        .content {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .event {
+            background-color: white;
+            border-left: 4px solid #0078D4;
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .event-time {
+            color: #0078D4;
+            font-weight: bold;
+        }
+        .event-subject {
+            font-size: 18px;
+            margin: 5px 0;
+        }
+        .event-location {
+            color: #666;
+            font-style: italic;
+        }
+        .no-events {
+            background-color: white;
+            padding: 15px;
+            border-radius: 4px;
+            text-align: center;
+            border-left: 4px solid #FFB900;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Seus Compromissos de Hoje</h1>
+        <p>{{ today_date }}</p>
+    </div>
+    <div class="content">
+        <p>Olá, <strong>{{ user_name }}</strong>!</p>
+        {% if events %}
+            <p>Aqui estão seus compromissos agendados para hoje:</p>
+            {% for event in events %}
+            <div class="event">
+                <div class="event-time">{{ event.time_str }}</div>
+                <h2 class="event-subject">{{ event.subject }}</h2>
+                <div class="event-location">📍 {{ event.location }}</div>
+                <p>{{ event.body_preview }}</p>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="no-events">
+                <h2>Você não tem compromissos agendados para hoje!</h2>
+                <p>{{ no_events_phrase }}</p>
+            </div>
+        {% endif %}
+        <p>Tenha um ótimo dia!</p>
+    </div>
+    <div class="footer">
+        <p>Este é um lembrete automático enviado pelo sistema de calendário.</p>
+    </div>
+</body>
+</html>
+
+
