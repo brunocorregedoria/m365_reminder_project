@@ -131,3 +131,5 @@ config/secrets.json
 scripts/*.log
 logs/*.log
 logs/
+.env~
+*.env~
